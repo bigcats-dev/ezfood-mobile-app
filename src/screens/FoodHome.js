@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Image , TouchableOpacity } from "react-native";
 import {
-  Provider as PaperProvider,
-  Appbar,
-  Searchbar,
-  Card,
-  Text,
-  Button,
-  Avatar,
-  IconButton,
-  Icon ,
-} from "react-native-paper";
+  Provider as PaperProvider, Appbar, Searchbar, Card, Text, Button, Avatar, IconButton  } from "react-native-paper"; 
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../styles/style'; 
 
 export default function FoodHome() {
   const [searchQuery, setSearchQuery] = React.useState("");
+  const [activeCategory, setActiveCategory] = React.useState(0); // <-- move state here
 
+  const categories = [
+    { name: "Noodles", icon: "noodles" },
+    { name: "Turkey", icon: "food-turkey" },
+    { name: "Pizza", icon: "pizza" },
+    { name: "Ice Cream", icon: "ice-cream" },
+    { name: "Noodles", icon: "noodles" },
+    { name: "Turkey", icon: "food-turkey" },
+    { name: "Pizza", icon: "pizza" },
+    { name: "Ice Cream", icon: "ice-cream" },
+  ];
   return (
     <PaperProvider>
       <ScrollView style={{ flex: 1, backgroundColor: "#f9f9f9" }}>
@@ -96,17 +99,21 @@ export default function FoodHome() {
             หมวดหมู่ยอดนิยม
           </Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ paddingHorizontal: 10 }}>
-            {["noodles", "food-turkey", "pizza", "ice-cream","noodles", "food-turkey", "pizza", "ice-cream"].map((icon, i) => (
-              <IconButton
-                key={i}
-                icon={icon}
-                size={36}
-                style={{
-                  backgroundColor: i === 0 ? "#1E874B" : "white",
-                  marginHorizontal: 5,
-                }}
-                iconColor={i === 0 ? "white" : "gray"}
-              />
+            {categories.map((cat, i) => (
+              <View key={i} style={{ alignItems: "center", marginHorizontal: 5 }}>
+                <IconButton
+                  icon={cat.icon}
+                  size={36}
+                  onPress={() => setActiveCategory(i)} // กดแล้ว active จะเปลี่ยน
+                  style={{
+                    backgroundColor: i === activeCategory ? "#1E874B" : "white",
+                  }}
+                  iconColor={i === activeCategory ? "white" : "gray"}
+                />
+                <Text style={{ color: i === activeCategory ? "#1E874B" : "gray", marginTop: -5 }}>
+                  {cat.name}
+                </Text>
+              </View>
             ))}
           </ScrollView>
         </View>
