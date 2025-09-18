@@ -22,6 +22,8 @@ import FoodHome from './src/screens/FoodHome';
 import FoodShopMain from './src/screens/FoodShopMain';
 import FoodSelectMenu from './src/screens/FoodSelectMenu';
 import FoodCategories from './src/screens/FoodCategories';
+import FoodShopMainCart from './src/screens/FoodShopMainCart';
+import FoodCheckOut from './src/screens/FoodCheckOut';
 
 
 
@@ -64,6 +66,8 @@ export default function App() {
             <Stack.Screen name="FoodShopMain" component={FoodShopMain} options={{ headerShown: false }} />
             <Stack.Screen name="FoodSelectMenu" component={FoodSelectMenu} options={{ headerShown: false }} />
             <Stack.Screen name="FoodCategories" component={FoodCategories} options={{ headerShown: false }} />
+            <Stack.Screen name="FoodShopMainCart" component={FoodShopMainCart} options={{ headerShown: false }} />
+            <Stack.Screen name="FoodCheckOut" component={FoodCheckOut} options={{ headerShown: false }} />
             <Stack.Screen name="Otp" component={OtpScreen} />
             <Stack.Screen name="OtpScreenLogin" component={OtpScreenLogin} />
             <Stack.Screen name="MainRegis" component={MainRegister} />

@@ -245,6 +245,18 @@ export default StyleSheet.create({
     marginTop: 10, 
     marginLeft: 10,
   }, 
+  btnCheck: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    marginBottom: 20,
+    backgroundColor: "#1E874B",
+    borderRadius: 30,  
+    padding: 0,
+    marginLeft: 15,
+    marginRight: 15, 
+  }, 
   
 });
 

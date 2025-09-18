@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { View, Image, TouchableOpacity, FlatList } from "react-native";
-import { Appbar, Card, Text, Avatar } from "react-native-paper";
+import { Appbar, Card, Text, Avatar , Button } from "react-native-paper";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../styles/style';
 
-export default function FoodShopMain({ navigation }) {
+export default function FoodShopMainCart({ navigation }) {
   const [activeCategory, setActiveCategory] = useState(0);
   const [visible, setVisible] = React.useState(false);
   const [selectedAddress, setSelectedAddress] = React.useState("เลือกที่อยู่สำหรับจัดส่ง");
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
+
+  // ตัวอย่าง: จำนวนรายการและราคาคงที่
+  const [cartItems, setCartItems] = useState(1);
+  const [cartTotal, setCartTotal] = useState(100);
 
   const foods = [
     {
@@ -84,7 +88,7 @@ export default function FoodShopMain({ navigation }) {
   const renderItem = ({ item }) => (
     <TouchableOpacity
       style={{ flex: 1 }}
-      onPress={() => navigation.navigate("FoodSelectMenu", { item })} // 👈 ส่ง item ไปหน้า FoodSelectMenu
+      onPress={() => navigation.navigate("FoodSelectMenu", { item })}
       activeOpacity={0.9}
     >
       <Card style={{ flex: 1, margin: 8, borderRadius: 12, backgroundColor: "#ffffff" , shadowColor: "white" }}>
@@ -114,7 +118,6 @@ export default function FoodShopMain({ navigation }) {
             </View>
           )}
 
-          {/* ปุ่ม + */}
           <TouchableOpacity
             style={{
               position: "absolute",
@@ -162,7 +165,6 @@ export default function FoodShopMain({ navigation }) {
           onPress={() => navigation.goBack()}
         />
 
-        {/* Center Title */}
         <TouchableOpacity onPress={showModal} style={{ flex: 1 }}>
           <View
             style={{
@@ -178,12 +180,11 @@ export default function FoodShopMain({ navigation }) {
           </View>
         </TouchableOpacity>
 
-        {/* Avatar */}
         <Avatar.Image size={36} source={{ uri: "https://i.pravatar.cc/300" }} />
       </Appbar.Header>
 
       <Text variant="titleMedium" style={styles.titleMfood}>
-        ก๋วยเตี๋ยวไทยโบราณแม่พลอย 
+        ก๋วยเตี๋ยวไทยโบราณแม่พลอย x
       </Text>
       <Text variant="titleMedium" style={styles.subMfood}>
         หมวดหมู่ยอดนิยม
@@ -194,8 +195,43 @@ export default function FoodShopMain({ navigation }) {
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-        contentContainerStyle={{ padding: 8 }}
+        contentContainerStyle={{ padding: 8, paddingBottom: 80 }} // เพิ่ม paddingBottom ให้ไม่ถูก Footer ทับ
       />
+
+   
+      <Button
+        mode="contained"
+        onPress={() => navigation.navigate('FoodCheckOut')}
+        contentStyle={{ padding: 0 }}  
+        style={styles.btnCheck}
+      >
+        <View style={{ 
+          flexDirection: "row", 
+          justifyContent: "space-between", 
+          alignItems: "center",
+          paddingVertical: 12,
+          paddingHorizontal: 20
+        }}>
+          {/* ซ้าย: ไอคอน + จำนวนรายการ */}
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Icon name="shopping-cart" size={20} color="white" />
+            <Text style={{ color: "white", fontSize: 16, fontWeight: "bold", marginRight: 80 }}>
+              2 รายการ
+            </Text>
+          </View>
+
+          {/* ขวา: ราคา */}
+          <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" , marginLeft: 80 }}>
+            100 ฿
+          </Text>
+        </View>
+      </Button>
+
+
+
+
+
+
     </View>
   );
 }
