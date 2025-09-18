@@ -228,6 +228,23 @@ export default StyleSheet.create({
     color: '#888', 
     marginTop: 4,  
   },
+  titleMfood: {
+    fontSize: 22,     
+    fontWeight: 'bold',   
+    color: '#000',    
+    marginBottom: 10, 
+    paddingTop: 20,
+    marginTop: 20, 
+    marginLeft: 10, 
+  }, 
+  subMfood: {
+    fontSize: 18,     
+    fontWeight: 'bold',   
+    color: '#000',    
+    marginBottom: 10, 
+    marginTop: 10, 
+    marginLeft: 10,
+  }, 
   
 });
 

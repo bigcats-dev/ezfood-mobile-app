@@ -19,7 +19,7 @@ import AddCategory from './src/screens/AddCategory';
 import AddBusinessTime from './src/screens/AddBusinessTime';
 import OtpScreenLogin from './src/screens/OtpScreenLogin';
 import FoodHome from './src/screens/FoodHome';
-import FoodDetails from './src/screens/FoodDetails';
+import FoodShopMain from './src/screens/FoodShopMain';
 
 
 
@@ -59,7 +59,7 @@ export default function App() {
             <Stack.Screen name="Register" component={RegisterScreen} options={{ title: 'สมัครใช้งาน' }} />
             <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
             <Stack.Screen name="FoodHome" component={FoodHome} options={{ headerShown: false }} />
-            <Stack.Screen name="FoodDetails" component={FoodDetails} options={{ headerShown: false }} />
+            <Stack.Screen name="FoodShopMain" component={FoodShopMain} options={{ headerShown: false }} />
             <Stack.Screen name="Otp" component={OtpScreen} />
             <Stack.Screen name="OtpScreenLogin" component={OtpScreenLogin} />
             <Stack.Screen name="MainRegis" component={MainRegister} />
