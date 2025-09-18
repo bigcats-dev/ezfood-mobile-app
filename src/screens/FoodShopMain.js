@@ -1,31 +1,17 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Image, TouchableOpacity, FlatList } from "react-native";
-import { Provider as PaperProvider, Appbar, Card, Text, Avatar, Portal, Modal, List, IconButton } from "react-native-paper";
+import { View, Image, TouchableOpacity, FlatList } from "react-native";
+import { Appbar, Card, Text, Avatar } from "react-native-paper";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../styles/style';
 
 export default function FoodShopMain({ navigation }) {
-  const [searchQuery, setSearchQuery] = React.useState("");
   const [activeCategory, setActiveCategory] = useState(0);
-
   const [visible, setVisible] = React.useState(false);
   const [selectedAddress, setSelectedAddress] = React.useState("เลือกที่อยู่สำหรับจัดส่ง");
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
 
-  const containerStyle = {
-    backgroundColor: "white",
-    padding: 20,
-    margin: 20,
-    borderRadius: 12,
-  };
-
-  const addresses = [
-    "บ้าน - 123/45 ถนนพระราม 9",
-    "ที่ทำงาน - ชั้น 10 อาคาร A",
-    "คอนโด - ซอยสุขุมวิท 39",
-  ]; 
   const foods = [
     {
       id: 1,
@@ -95,127 +81,121 @@ export default function FoodShopMain({ navigation }) {
     },
   ];
 
-  
-
- 
   const renderItem = ({ item }) => (
-    <Card style={{ flex: 1, margin: 8, borderRadius: 12, backgroundColor: "#ffffff" , shadowColor:"white" }}>
-      <View >
-        <Image
-          source={{ uri: item.img }}
-          style={{
-            height: 140,
-            borderTopLeftRadius: 12,
-            borderTopRightRadius: 12,
-          }}
-        />
- 
-        {item.tag && (
-          <View
+    <TouchableOpacity
+      style={{ flex: 1 }}
+      onPress={() => navigation.navigate("FoodSelectMenu", { item })} // 👈 ส่ง item ไปหน้า FoodSelectMenu
+      activeOpacity={0.9}
+    >
+      <Card style={{ flex: 1, margin: 8, borderRadius: 12, backgroundColor: "#ffffff" , shadowColor: "white" }}>
+        <View>
+          <Image
+            source={{ uri: item.img }}
             style={{
-              position: "absolute",
-              top: 8,
-              left: 8,
-              backgroundColor: "green",
-              paddingHorizontal: 6,
-              paddingVertical: 2,
-              borderRadius: 6,
+              height: 140,
+              borderTopLeftRadius: 12,
+              borderTopRightRadius: 12,
             }}
-          >
-            <Text style={{ color: "white", fontSize: 12 }}>{item.tag}</Text>
-          </View>
-        )}
+          />
 
-        {/* ปุ่ม + */}
-        <TouchableOpacity
-          style={{
-            position: "absolute",
-            bottom: 8,
-            right: 8,
-            backgroundColor: "white",
-            borderRadius: 20,
-            padding: 4,
-          }}
-        >
-          <Icon name="add" size={20} color="green" />
-        </TouchableOpacity>
-      </View>
-
-      <Card.Content style={{ padding: 8 }}>
-        <Text style={{ fontSize: 14 , color: "black" }}>{item.title}</Text>
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Text style={{ color: "black", fontWeight: "bold", fontSize: 14 }}>
-            ฿{item.price}
-          </Text>
-          {item.oldPrice && (
-            <Text
+          {item.tag && (
+            <View
               style={{
-                marginLeft: 6,
-                textDecorationLine: "line-through",
-                color: "red",
-                fontSize: 12,
+                position: "absolute",
+                top: 8,
+                left: 8,
+                backgroundColor: "green",
+                paddingHorizontal: 6,
+                paddingVertical: 2,
+                borderRadius: 6,
               }}
             >
-              ฿{item.oldPrice}
-            </Text>
+              <Text style={{ color: "white", fontSize: 12 }}>{item.tag}</Text>
+            </View>
           )}
+
+          {/* ปุ่ม + */}
+          <TouchableOpacity
+            style={{
+              position: "absolute",
+              bottom: 8,
+              right: 8,
+              backgroundColor: "white",
+              borderRadius: 20,
+              padding: 4,
+            }}
+          >
+            <Icon name="add" size={20} color="green" />
+          </TouchableOpacity>
         </View>
-      </Card.Content>
-    </Card>
+
+        <Card.Content style={{ padding: 8 }}>
+          <Text style={{ fontSize: 14, color: "black" }}>{item.title}</Text>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <Text style={{ color: "black", fontWeight: "bold", fontSize: 14 }}>
+              ฿{item.price}
+            </Text>
+            {item.oldPrice && (
+              <Text
+                style={{
+                  marginLeft: 6,
+                  textDecorationLine: "line-through",
+                  color: "red",
+                  fontSize: 12,
+                }}
+              >
+                ฿{item.oldPrice}
+              </Text>
+            )}
+          </View>
+        </Card.Content>
+      </Card>
+    </TouchableOpacity>
   );
 
   return (
-    <PaperProvider>
-      <View style={{ flex: 1, backgroundColor: "#f9f9f9" }}>
-        {/* Header */}
-        <Appbar.Header style={{ backgroundColor: "white" }}>
-           
-          <Appbar.Action 
-            icon="arrow-left" 
-            onPress={() => navigation.navigate("FoodHome")} 
-          />
-
-          {/* Center Title */}
-          <TouchableOpacity onPress={showModal} style={{ flex: 1 }}>
-            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
-              <Text style={{ color: "#1E874B", fontWeight: "bold", fontSize: 16 }}>
-                {selectedAddress}
-              </Text>
-              <Icon name="keyboard-arrow-down" size={18} color="gray" />
-            </View>
-          </TouchableOpacity>
-
-          {/* Avatar */}
-          <Avatar.Image
-            size={36}
-            source={{ uri: "https://i.pravatar.cc/300" }}
-          />
-        </Appbar.Header>
-        <Text variant="titleMedium" style={styles.titleMfood}>
-          ร้านคนแป้ อาหารเหนือ
-        </Text> 
- 
-        <FlatList
-          data={foods}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
-          numColumns={2}
-          contentContainerStyle={{ padding: 8 }} 
-          ListHeaderComponent={
-            <>
-              <Text style={styles.subMfood}>หมวดหมู่ยอดนิยม</Text>
-            </>
-          }
-          ListFooterComponent={
-            <>
-              <Text style={styles.subMfood}>xxxxxxxx</Text>
-            </>
-          }
+    <View style={{ flex: 1, backgroundColor: "#f9f9f9" }}>
+      {/* Header */}
+      <Appbar.Header style={{ backgroundColor: "white" }}>
+        <Appbar.Action
+          icon="arrow-left"
+          onPress={() => navigation.goBack()}
         />
 
-       
-        
-      </View>
-    </PaperProvider>
+        {/* Center Title */}
+        <TouchableOpacity onPress={showModal} style={{ flex: 1 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ color: "#1E874B", fontWeight: "bold", fontSize: 16 }}>
+              {selectedAddress}
+            </Text>
+            <Icon name="keyboard-arrow-down" size={18} color="gray" />
+          </View>
+        </TouchableOpacity>
+
+        {/* Avatar */}
+        <Avatar.Image size={36} source={{ uri: "https://i.pravatar.cc/300" }} />
+      </Appbar.Header>
+
+      <Text variant="titleMedium" style={styles.titleMfood}>
+        ร้านคนแป้ อาหารเหนือ
+      </Text>
+      <Text variant="titleMedium" style={styles.subMfood}>
+        หมวดหมู่ยอดนิยม
+      </Text>
+
+      <FlatList
+        data={foods}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        contentContainerStyle={{ padding: 8 }}
+      />
+    </View>
   );
 }

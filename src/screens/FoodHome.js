@@ -113,7 +113,7 @@ export default function FoodHome({ navigation }) {
             ].map((item, index) => (
               <TouchableOpacity
                 key={index}
-                onPress={() => navigation.navigate("FoodShopMain", { food: item })} // ✅ ไป FoodDetails
+                onPress={() => navigation.navigate("FoodShopMain", { food: item })}  
               >
                 <Card style={styles.mCard}>
                   <Card.Cover source={{ uri: item.img }} />
@@ -146,7 +146,7 @@ export default function FoodHome({ navigation }) {
             {categories.map((cat, i) => (
               <TouchableOpacity
                 key={i}
-                onPress={() => navigation.navigate("FoodShopMain", { category: cat })} // ✅ ส่ง category ไป
+                onPress={() => navigation.navigate("FoodCategories", { category: cat })} // ✅ ส่ง category ไป
                 style={{ alignItems: "center", marginHorizontal: 8 }}
               >
                 <View style={{ borderRadius: 50, backgroundColor: "white" }}>
