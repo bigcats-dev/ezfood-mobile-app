@@ -256,7 +256,81 @@ export default StyleSheet.create({
     padding: 0,
     marginLeft: 15,
     marginRight: 15, 
-  }, 
-  
+  },  
+  content: { flex: 1, padding: 16  },
+  sectionTitle: { marginBottom: 8, color:"black", fontSize: 20, fontWeight:"bold" }, 
+  cardContent: { flexDirection: 'row', alignItems: 'center', marginBottom: 20, paddingBottom: 0 },
+  thumb: { width: 64, height: 64, borderRadius: 8, marginRight: 12 },
+  muted: { color: '#666' },
+  edit: { color: '#ff0000', marginTop: 4 },
+  qtyBox: { alignItems: 'flex-end' },
+  qtyRow: { flexDirection: 'row', alignItems: 'center' },
+  price: { fontWeight: '700' },
+  infoRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 12 },
+  greenHint: { color: '#1E874B', marginTop: 8 },
+  envRow: { flexDirection: 'row', alignItems: 'center' },
+  pickRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 12 },
+  addressWarning: { marginTop: 12, color: '#666' },
+  footer: { padding: 12, borderTopLeftRadius: 16, borderTopRightRadius: 16 , marginLeft: 10 , marginRight: 10, padding: 15 , paddingBottom: 30 },
+  footerInner: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  orderBtn: { minWidth: 150 },
+  addressRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 0 , color: '#1E874B' },
+  optionRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 0 },
+  optionText: { color: '#546E7A' },
+  labelAdd: { color: '#546E7A', marginRight: 8 },
+  address: { flex: 1, color: '#1E874B', fontWeight: '500' , fontWeight:"bold" },
+  titleMedium: { flex: 1, color: '#1E874B', fontWeight: '500' , fontWeight:"bold" },
+  minus: { color: '#1E874B', fontWeight: '500' , fontWeight:"bold" },
+  plus: { color: '#1E874B', fontWeight: '500' , fontWeight:"bold" },
+  quantity: { color: '#1E874B', fontWeight: '500' , fontWeight:"bold" },
+  subPrice: {
+    fontSize: 16, 
+    color: '#000000', 
+    marginTop: 4,  
+    fontWeight:"bold"
+  },    
+  paymentRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 0 },
+  modal: { backgroundColor: 'white', padding: 20, borderTopLeftRadius: 16, borderTopRightRadius: 16  },
+  modalTitle: { fontSize: 18, fontWeight: '600', marginBottom: 16 , color: '#000000'},
+
+
+   
+  modalPay: { justifyContent: 'flex-end', margin: 0 },
+  sheet: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+  },
+  handle: {
+    width: 40,
+    height: 5,
+    backgroundColor: '#ccc',
+    borderRadius: 3,
+    alignSelf: 'center',
+    marginBottom: 12,
+  },
+  modalTitle: { fontSize: 18, fontWeight: '600', marginBottom: 16 , color: '#000000' },
+  orderBtn: {
+    minWidth: 150,
+    borderRadius: 25,    
+    paddingVertical: 6,  
+  },
+  bthtx: {
+    fontWeight: "bold",
+    fontSize: 30,
+    marginTop: 10
+  },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  historyLink: {
+    color: '#1e88e5', // น้ำเงินเหมือนลิงก์
+    fontSize: 14,
+  },
+
 });
 

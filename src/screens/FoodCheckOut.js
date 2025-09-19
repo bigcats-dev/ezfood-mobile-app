@@ -1,10 +1,12 @@
-import React from 'react';
-import { View, StyleSheet, Image, Text as RNText } from 'react-native';
-import { Appbar, Card, Text, Button, IconButton, Switch, Divider, Surface } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { View, TouchableOpacity , Image, Text as RNText } from 'react-native';
+import { Appbar, Card, Text, Button, IconButton, Switch, Divider, Surface ,RadioButton , List ,Portal} from 'react-native-paper'; 
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import styles from '../styles/style';
+import Modal from 'react-native-modal';
 
-export default function CheckoutScreen() {
-  const navigation = useNavigation();
+export default function FoodCheckOut({ navigation, route }) { 
+  const item = route.params?.item || { title: "ก๋วยเตี๋ยวไทยโบราณแม่พลอย", price: 80 };
   const [quantity, setQuantity] = React.useState(1);
   const [donate, setDonate] = React.useState(false);
 
@@ -12,12 +14,17 @@ export default function CheckoutScreen() {
   const deliveryFee = 15;
   const donation = donate ? 1 : 0;
   const total = foodPrice * quantity + deliveryFee + donation;
+  const [value, setValue] = React.useState('store');
+  const [visible, setVisible] = useState(false);
+  const [paymentType, setPaymentType] = useState('');
+
+ 
 
   return (
-    <View style={styles.container}>
-      <Appbar.Header elevated>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
-        <Appbar.Content title="ราชาเนื้อตุ๋น - ถนนอุดมสุข" subtitle="ค่าจัดส่งคำนวณเมื่อเวลา 23:01:30" />
+    <View style={{ flex: 1, backgroundColor: "#fff" }}>
+      <Appbar.Header style={{  backgroundColor: "#1E874B" }}>
+        <Appbar.Action icon="close"  style={{ color: "#fff" }} onPress={() => navigation.goBack()} /> 
+        <Appbar.Content title={item.title} titleStyle={{ fontWeight: "bold" , fontSize: "18" }} />
       </Appbar.Header>
 
       <View style={styles.content}>
@@ -25,10 +32,36 @@ export default function CheckoutScreen() {
 
         <Card style={styles.card}>
           <Card.Content style={styles.cardContent}>
-            <Image source={require('../../assets/m201.jpg')} style={styles.thumb} />
+            <Image 
+              source={{ uri: "https://img.wongnai.com/p/1920x0/2024/01/10/84965fd1b0bc4823b80fe58b1d81bad3.jpg" }} 
+              style={styles.thumb} 
+            />
+
 
             <View style={{ flex: 1 }}>
-              <Text variant="titleMedium">เกาเหลาเนื้อ</Text>
+              <Text variant="titleMedium" style={styles.titleMedium}>เกาเหลาต้มยำโบราณ</Text>
+              <Text variant="bodySmall" style={styles.muted}>ธรรมดา</Text>
+              <Text style={styles.edit}>แก้ไข</Text>
+            </View>
+
+            <View style={styles.qtyBox}>
+              <RNText style={styles.price}>฿{foodPrice}</RNText>
+              <View style={styles.qtyRow}>
+                <IconButton icon="minus" style={styles.minus} size={20} onPress={() => setQuantity(q => Math.max(1, q - 1))} />
+                <Text style={styles.quantity}>{quantity}</Text>
+                <IconButton icon="plus" style={styles.plus} size={20} onPress={() => setQuantity(q => q + 1)} />
+              </View>
+            </View>
+          </Card.Content>
+          <Card.Content style={styles.cardContent}>
+            <Image 
+              source={{ uri: "https://img.wongnai.com/p/1920x0/2024/01/10/84965fd1b0bc4823b80fe58b1d81bad3.jpg" }} 
+              style={styles.thumb} 
+            />
+
+
+            <View style={{ flex: 1 }}>
+              <Text variant="titleMedium" style={styles.titleMedium}>เกาเหลาต้มยำโบราณ</Text>
               <Text variant="bodySmall" style={styles.muted}>ธรรมดา</Text>
               <Text style={styles.edit}>แก้ไข</Text>
             </View>
@@ -37,7 +70,7 @@ export default function CheckoutScreen() {
               <RNText style={styles.price}>฿{foodPrice}</RNText>
               <View style={styles.qtyRow}>
                 <IconButton icon="minus" size={20} onPress={() => setQuantity(q => Math.max(1, q - 1))} />
-                <Text>{quantity}</Text>
+                <Text style={styles.quantity}>{quantity}</Text>
                 <IconButton icon="plus" size={20} onPress={() => setQuantity(q => q + 1)} />
               </View>
             </View>
@@ -45,76 +78,121 @@ export default function CheckoutScreen() {
         </Card>
 
         <View style={styles.infoRow}>
-          <Text>รวมค่าอาหาร</Text>
-          <Text>฿{foodPrice * quantity}</Text>
+          <Text style={styles.subPrice}>รวมค่าอาหาร</Text>
+          <Text style={styles.subPrice}>฿{foodPrice * quantity}</Text>
         </View>
 
         <View style={styles.infoRow}>
-          <Text>ค่าจัดส่ง</Text>
-          <Text>฿{deliveryFee}</Text>
+          <Text style={styles.subPrice}>ค่าจัดส่ง</Text>
+          <Text style={styles.subPrice}>฿{deliveryFee}</Text>
         </View>
 
         <Text style={styles.greenHint}>สั่งเพิ่มอีก ฿50 เพื่อรับส่วนลดสูงสุด ฿15</Text>
 
         <Divider style={{ marginVertical: 12 }} />
 
-        <Text variant="titleMedium" style={{ marginBottom: 8 }}>ตัวเลือกเพื่อสิ่งแวดล้อม</Text>
-        <View style={styles.envRow}>
-          <View style={{ flex: 1 }}>
-            <Text>เงินบริจาคโครงการเพื่อโลกสีเขียว • ฿1</Text>
-            <Text variant="bodySmall" style={styles.muted}>ร่วมกันสมัครใจบริจาคเพื่อลดคาร์บอนฟุตพริ้นท์</Text>
-          </View>
-          <Switch value={donate} onValueChange={setDonate} />
-        </View>
-
-        <Divider style={{ marginVertical: 12 }} />
-
-        <View style={styles.pickRow}>
-          <Button mode="contained" style={{ flex: 1 }} onPress={() => {}}>
-            จัดส่ง
-          </Button>
-          <Button mode="text" onPress={() => {}}>
-            รับที่ร้าน
-          </Button>
-        </View>
-
+       
         <Text style={styles.addressWarning}>⚠️ โปรดตรวจสอบที่อยู่สำหรับจัดส่งให้ถูกต้อง</Text>
+        <View style={styles.container}>
+          {/* Address Row */}
+          <View style={styles.addressRow}>
+            <Text style={styles.labelAdd}>ที่อยู่จัดส่ง</Text>
+            <Text style={styles.address}>ออฟฟิศบิ๊กแคก บางนา</Text>
+            <IconButton icon="pencil" iconColor="#1E874B" size={18} onPress={() => {}} />
+          </View>
+ 
+          {/* Radio Options */}
+          <RadioButton.Group onValueChange={setValue} value={value}>
+            <View style={styles.optionRow}>
+              <RadioButton.Android value="store" color="#1E874B" />
+              <Text style={styles.optionText}>ให้ทางร้านจัดส่ง</Text>
+            </View>
+
+
+            <View style={styles.optionRow}>
+              <RadioButton.Android value="delivery" color="#1E874B" />
+              <Text style={styles.optionText}>ให้ Delivery จัดส่ง</Text>
+            </View>
+          </RadioButton.Group>
+        </View> 
+
+
+        {/* Bottom Sheet Modal */}
+        <View style={{ flex: 1, padding: 16 }}>
+          <Text style={styles.label}>วิธีการชำระเงิน</Text>
+          
+          <TouchableOpacity onPress={() => setVisible(true)}>
+            <Text style={{ color: '#1e88e5', fontSize: 16 }}>
+              {paymentType ? paymentType : 'เลือกวิธีการชำระเงิน'}
+            </Text>
+            <Icon source="pencil" size={18} color="#1e88e5" />
+          </TouchableOpacity>
+
+          <Modal
+            isVisible={visible}
+            swipeDirection="down"
+            onSwipeComplete={() => setVisible(false)}
+            onBackdropPress={() => setVisible(false)}
+            style={styles.modalPay}
+          >
+            <View style={styles.sheet}>
+              {/* drag handle bar */}
+              <View style={styles.handle} />
+
+              <Text style={styles.modalTitle}>เลือกวิธีการชำระเงิน</Text>
+
+              <List.Item
+                title="QR Code"
+                titleStyle={{ color: '#000000' }}  
+                onPress={() => { setPaymentType('QR Code'); setVisible(false); }}
+                left={props => <List.Icon {...props} icon="qrcode" color="#000000" />}
+              /> 
+              <List.Item
+                title="Net banking"
+                titleStyle={{ color: '#000000' }}  
+                onPress={() => { setPaymentType('Net banking'); setVisible(false); }}
+                left={props => <List.Icon {...props} icon="credit-card" color="#000000" />}
+              />
+              <List.Item
+                title="บัตรเครดิต"
+                titleStyle={{ color: '#000000' }}  
+                onPress={() => { setPaymentType('บัตรเครดิต'); setVisible(false); }}
+                left={props => <List.Icon {...props} icon="credit-card" color="#000000" />}
+              />
+              <List.Item
+                title="เพิ่มบัตรเครดิต"
+                titleStyle={{ color: '#888' }}  
+                onPress={() => { setPaymentType('เพิ่มบัตรเครดิต'); setVisible(false); }}
+                left={props => <List.Icon {...props} icon="plus" color="#888" />}
+              />
+            </View>
+          </Modal>
+        </View>
+        
+        
       </View>
 
       <Surface style={styles.footer} elevation={4}>
         <View style={styles.footerInner}>
           <View>
             <Text>รวมทั้งหมด</Text>
-            <Text variant="titleLarge">฿{total}</Text>
+            <Text variant="titleLarge" style={styles.bthtx}>฿{total}</Text>
           </View>
 
-          <Button mode="contained" onPress={() => {}} style={styles.orderBtn}>
+          <Button
+            mode="contained"
+            onPress={() => {}}
+            style={styles.orderBtn}
+            buttonColor="#4CAF50"   // เขียวสวย Material
+            textColor="#fff"        // ตัวอักษรสีขาว
+          >
             สั่งซื้อ
           </Button>
         </View>
       </Surface>
+
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
-  content: { flex: 1, padding: 16 },
-  sectionTitle: { marginBottom: 8 },
-  card: { borderRadius: 12, overflow: 'hidden' },
-  cardContent: { flexDirection: 'row', alignItems: 'center' },
-  thumb: { width: 64, height: 64, borderRadius: 8, marginRight: 12 },
-  muted: { color: '#666' },
-  edit: { color: '#1e88e5', marginTop: 4 },
-  qtyBox: { alignItems: 'flex-end' },
-  qtyRow: { flexDirection: 'row', alignItems: 'center' },
-  price: { fontWeight: '700' },
-  infoRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 12 },
-  greenHint: { color: '#2e7d32', marginTop: 8 },
-  envRow: { flexDirection: 'row', alignItems: 'center' },
-  pickRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 12 },
-  addressWarning: { marginTop: 12, color: '#666' },
-  footer: { padding: 12, borderTopLeftRadius: 16, borderTopRightRadius: 16 },
-  footerInner: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  orderBtn: { minWidth: 150 },
-});
+ 

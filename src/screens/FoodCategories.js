@@ -82,6 +82,7 @@ export default function FoodCategories({ navigation }) {
                 titleStyle={{ fontSize: 18 , color: "#000000" }}
               />
             ))}
+            
           </Modal>
         </Portal>
 

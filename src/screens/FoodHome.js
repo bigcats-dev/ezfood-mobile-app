@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Image, TouchableOpacity } from "react-native";
-import { Provider as PaperProvider, Appbar, Searchbar, Card, Text, Avatar , Portal , Modal , List} from "react-native-paper";
+import { Provider as PaperProvider, Appbar, Searchbar, Card, Text, Avatar , Portal , Modal , List , } from "react-native-paper";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../styles/style';
 
-// ✅ รับ navigation ผ่าน props
+ 
 export default function FoodHome({ navigation }) {
   const [searchQuery, setSearchQuery] = React.useState("");
   const [activeCategory, setActiveCategory] = useState(0);
@@ -44,11 +44,11 @@ export default function FoodHome({ navigation }) {
       <ScrollView style={{ flex: 1, backgroundColor: "#f9f9f9" }}>
         {/* Header */}
         <Appbar.Header style={{ backgroundColor: "white" }}>
-          <Appbar.Action icon="menu" onPress={() => {}} />
+           
 
           <TouchableOpacity onPress={showModal} style={{ flex: 1 }}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ color: "#1E874B", fontWeight: "bold", fontSize: 16 }}>
+              <Text style={{ color: "#1E874B", fontWeight: "bold", fontSize: 16 , marginLeft: 10 }}>
                 {selectedAddress}
               </Text>
               <Icon name="keyboard-arrow-down" size={18} color="gray" />
@@ -76,17 +76,33 @@ export default function FoodHome({ navigation }) {
                   setSelectedAddress(addr);  
                   hideModal();
                 }}
-                titleStyle={{ fontSize: 18 , color: "#000000" }}
+                titleStyle={{ fontSize: 16 , color: "#000000" }}
               />
             ))}
+            <List.Item
+              title="เพิ่มที่อยู่ใหม่"
+              left={(props) => <List.Icon {...props} icon="plus-circle-outline" color="#1E874B" />}
+              onPress={() => { 
+                alert("กดเพิ่มที่อยู่ใหม่ ✨");
+              }}
+              titleStyle={{ fontSize: 16, color: "#1E874B", fontWeight: "bold" }}
+            />
+            
           </Modal>
         </Portal>
 
         {/* เมนูแนะนำ */}
         <View style={{ paddingHorizontal: 10, marginTop: 10 }}>
-          <Text variant="titleMedium" style={styles.title}>
-            สั่งอีกครั้ง
-          </Text>
+          <View style={styles.headerRow}>
+            <Text variant="titleMedium" style={styles.title}>
+              สั่งอีกครั้ง
+            </Text>
+
+            <TouchableOpacity onPress={() => navigation.navigate('OrderHistory')}>
+              <Text style={styles.historyLink}>ประวัติการสั่งซื้อ</Text>
+            </TouchableOpacity>
+          </View>
+
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {[
               {
