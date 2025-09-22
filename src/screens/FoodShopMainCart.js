@@ -184,7 +184,7 @@ export default function FoodShopMainCart({ navigation }) {
       </Appbar.Header>
 
       <Text variant="titleMedium" style={styles.titleMfood}>
-        ก๋วยเตี๋ยวไทยโบราณแม่พลอย x
+        ก๋วยเตี๋ยวไทยโบราณแม่พลอย
       </Text>
       <Text variant="titleMedium" style={styles.subMfood}>
         หมวดหมู่ยอดนิยม

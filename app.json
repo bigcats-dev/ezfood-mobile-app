@@ -24,6 +24,16 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b785aa54-9238-450d-992a-ec7c86c288f2"
+      }
+    },
+    "owner": "pimpae"
   }
 }
