@@ -26,9 +26,9 @@ export default function FoodShopMainCart({ navigation }) {
     },
     {
       id: 2,
-      title: "เกาเหลาต้มยำโบราณ",
+      title: "เย็นตาโฟต้มยำ",
       price: 139,
-      img: "https://img.wongnai.com/p/1920x0/2024/01/10/84965fd1b0bc4823b80fe58b1d81bad3.jpg",
+      img: "https://img.wongnai.com/p/1920x0/2018/07/20/34534460cf914dd7898e619968ad72dc.jpg",
       tag: "ยอดสั่งเยอะที่สุด",
     },
     {
@@ -184,7 +184,7 @@ export default function FoodShopMainCart({ navigation }) {
       </Appbar.Header>
 
       <Text variant="titleMedium" style={styles.titleMfood}>
-        ก๋วยเตี๋ยวไทยโบราณแม่พลอย
+        ปุ๊เย็นตาโฟ
       </Text>
       <Text variant="titleMedium" style={styles.subMfood}>
         หมวดหมู่ยอดนิยม

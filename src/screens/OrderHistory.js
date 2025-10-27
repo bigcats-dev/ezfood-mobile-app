@@ -34,17 +34,19 @@ const orders = [
 ];
 
 export default function OrderHistory({ navigation }) {
+  const handleReorder = (item) => {
+    console.log("🔁 สั่งใหม่:", item.title); 
+  };
+
   const renderItem = ({ item }) => (
-    <View style={{ flexDirection: "row", paddingVertical: 12 }}>
-      {/* รูป */}
+    <View style={{ flexDirection: "row", paddingVertical: 12 }}> 
       <Image
         source={{ uri: item.image }}
         style={{ width: 80, height: 80, borderRadius: 8 }}
       />
-
-      {/* เนื้อหา */}
+ 
       <View style={{ flex: 1, marginLeft: 12, justifyContent: "space-between" }}>
-        <Text style={{ fontSize: 16, fontWeight: "bold" , color: "#000"}}>{item.title}</Text>
+        <Text style={{ fontSize: 16, fontWeight: "bold", color: "#000" }}>{item.title}</Text>
         <Text style={{ color: "#999", marginTop: 4 }}>📅 {item.date}</Text>
 
         <View
@@ -53,7 +55,6 @@ export default function OrderHistory({ navigation }) {
             justifyContent: "space-between",
             alignItems: "center",
             marginTop: 6,
-            color: "#000"
           }}
         >
           <Text
@@ -64,14 +65,31 @@ export default function OrderHistory({ navigation }) {
           >
             {item.status}
           </Text>
-          <Button
-            mode="contained"
-            buttonColor="#1E874B"
-            textColor="#ffffff"
-            style={{ borderRadius: 8, paddingHorizontal: 8 }}
-          >
-            ซื้ออีกครั้ง
-          </Button>
+
+          {/* ปุ่มเฉพาะออเดอร์ที่สำเร็จ */}
+          {item.status === "สำเร็จ" && (
+            <View style={{ flexDirection: "row", gap: 6 }}>
+              <Button
+                mode="contained"
+                buttonColor="#FFD700"
+                textColor="#000"
+                style={{ borderRadius: 8 }}
+                onPress={() => navigation.navigate("ReviewScreen", { order: item })}
+              >
+                ให้คะแนน
+              </Button>
+
+              <Button
+                mode="contained"
+                buttonColor="#1E874B"
+                textColor="#fff"
+                style={{ borderRadius: 8 }}
+                onPress={() => handleReorder(item)}
+              >
+                สั่งใหม่
+              </Button>
+            </View>
+          )}
         </View>
       </View>
     </View>
@@ -80,8 +98,9 @@ export default function OrderHistory({ navigation }) {
   return (
     <View style={{ flex: 1, backgroundColor: "#F9FBFF" }}>
       {/* Header */}
-      <Appbar.Header style={{ backgroundColor: "#F9FBFF", elevation: 0 }}>
-        <Appbar.BackAction onPress={() => navigation.goBack()} />
+      <Appbar.Header style={{ backgroundColor: "#F9FBFF", elevation: 0 }}> 
+        <Appbar.BackAction onPress={() => navigation.navigate("FoodHome")} />
+
         <Appbar.Content
           title="ประวัติสั่งซื้อ"
           color="#1E874B"
@@ -89,7 +108,7 @@ export default function OrderHistory({ navigation }) {
         />
       </Appbar.Header>
 
-      {/* Order List */}
+      {/* List */}
       <FlatList
         data={orders}
         renderItem={({ item }) => (

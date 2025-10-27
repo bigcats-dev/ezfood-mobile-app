@@ -17,6 +17,7 @@ import FoodCategories from './src/screens/FoodCategories';
 import FoodShopMainCart from './src/screens/FoodShopMainCart';
 import FoodCheckOut from './src/screens/FoodCheckOut';
 import OrderHistory from './src/screens/OrderHistory';
+import ReviewScreen from './src/screens/ReviewScreen';
 
 
 
@@ -62,6 +63,7 @@ export default function App() {
             <Stack.Screen name="FoodShopMainCart" component={FoodShopMainCart} options={{ headerShown: false }} />
             <Stack.Screen name="FoodCheckOut" component={FoodCheckOut} options={{ headerShown: false }} />
             <Stack.Screen name="OrderHistory" component={OrderHistory} options={{ headerShown: false }} />
+            <Stack.Screen name="ReviewScreen" component={ReviewScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Otp" component={OtpScreen} />
             <Stack.Screen name="OtpScreenLogin" component={OtpScreenLogin} />
             <Stack.Screen name="MainRegis" component={MainRegister} /> 

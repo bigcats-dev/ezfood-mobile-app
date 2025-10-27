@@ -6,7 +6,7 @@ import styles from '../styles/style';
 import Modal from 'react-native-modal';
 
 export default function FoodCheckOut({ navigation, route }) { 
-  const item = route.params?.item || { title: "ก๋วยเตี๋ยวไทยโบราณแม่พลอย", price: 80 };
+  const item = route.params?.item || { title: "ปุ๊เย็นตาโฟ", price: 80 };
   const [quantity, setQuantity] = React.useState(1);
   const [donate, setDonate] = React.useState(false);
 
@@ -33,13 +33,13 @@ export default function FoodCheckOut({ navigation, route }) {
         <Card style={styles.card}>
           <Card.Content style={styles.cardContent}>
             <Image 
-              source={{ uri: "https://img.wongnai.com/p/1920x0/2024/01/10/84965fd1b0bc4823b80fe58b1d81bad3.jpg" }} 
+              source={{ uri: "https://img.wongnai.com/p/1920x0/2018/07/20/34534460cf914dd7898e619968ad72dc.jpg" }} 
               style={styles.thumb} 
             />
 
 
             <View style={{ flex: 1 }}>
-              <Text variant="titleMedium" style={styles.titleMedium}>เกาเหลาต้มยำโบราณ</Text>
+              <Text variant="titleMedium" style={styles.titleMedium}>เย็นตาโฟต้มยำ</Text>
               <Text variant="bodySmall" style={styles.muted}>ธรรมดา</Text>
               <Text style={styles.edit}>แก้ไข</Text>
             </View>
@@ -55,13 +55,13 @@ export default function FoodCheckOut({ navigation, route }) {
           </Card.Content>
           <Card.Content style={styles.cardContent}>
             <Image 
-              source={{ uri: "https://img.wongnai.com/p/1920x0/2024/01/10/84965fd1b0bc4823b80fe58b1d81bad3.jpg" }} 
+              source={{ uri: "https://img.wongnai.com/p/1920x0/2018/07/20/34534460cf914dd7898e619968ad72dc.jpg" }} 
               style={styles.thumb} 
             />
 
 
             <View style={{ flex: 1 }}>
-              <Text variant="titleMedium" style={styles.titleMedium}>เกาเหลาต้มยำโบราณ</Text>
+              <Text variant="titleMedium" style={styles.titleMedium}>เย็นตาโฟต้มยำ</Text>
               <Text variant="bodySmall" style={styles.muted}>ธรรมดา</Text>
               <Text style={styles.edit}>แก้ไข</Text>
             </View>
@@ -97,7 +97,7 @@ export default function FoodCheckOut({ navigation, route }) {
           {/* Address Row */}
           <View style={styles.addressRow}>
             <Text style={styles.labelAdd}>ที่อยู่จัดส่ง</Text>
-            <Text style={styles.address}>ออฟฟิศบิ๊กแคก บางนา</Text>
+            <Text style={styles.address}>ออฟฟิศบิ๊กแคท บางนา</Text>
             <IconButton icon="pencil" iconColor="#1E874B" size={18} onPress={() => {}} />
           </View>
  

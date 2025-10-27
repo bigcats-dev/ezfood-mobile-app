@@ -188,7 +188,7 @@ export default function FoodHome({ navigation }) {
 
           {[
             {
-              title: "ก๋วยเตี๋ยวไทยโบราณแม่พลอย",
+              title: "ปุ๊เย็นตาโฟ",
               rating: 4.7,
               reviews: "3พัน+",
               delivery: "21 นาทีขึ้นไป",
@@ -293,7 +293,7 @@ export default function FoodHome({ navigation }) {
 
           {[
             {
-              title: "ก๋วยเตี๋ยวไทยโบราณแม่พลอย",
+              title: "ปุ๊เย็นตาโฟ",
               rating: 4.7,
               reviews: "3พัน+",
               delivery: "21 นาทีขึ้นไป",
@@ -320,7 +320,7 @@ export default function FoodHome({ navigation }) {
               img: "https://img.kapook.com/u/2016/surauch/cook1/b_2.jpg",
             },
             {
-              title: "ก๋วยเตี๋ยวไทยโบราณแม่พลอย",
+              title: "ปุ๊เย็นตาโฟ",
               rating: 4.7,
               reviews: "3พัน+",
               delivery: "21 นาทีขึ้นไป",
