@@ -18,6 +18,7 @@ import FoodShopMainCart from './src/screens/FoodShopMainCart';
 import FoodCheckOut from './src/screens/FoodCheckOut';
 import OrderHistory from './src/screens/OrderHistory';
 import ReviewScreen from './src/screens/ReviewScreen';
+import OrderStatus from './src/screens/OrderStatus';
 
 
 
@@ -51,7 +52,7 @@ export default function App() {
   return (
     <PaperProvider >
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="ChooseAuth">
+        <Stack.Navigator initialRouteName="FoodCheckOut">
             <Stack.Screen name="ChooseAuth" component={ChooseAuthScreen} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={LoginScreen} options={{ title: 'เข้าสู่ะบบ', }}  />
             <Stack.Screen name="Register" component={RegisterScreen} options={{ title: 'สมัครใช้งาน' }} />
@@ -64,6 +65,7 @@ export default function App() {
             <Stack.Screen name="FoodCheckOut" component={FoodCheckOut} options={{ headerShown: false }} />
             <Stack.Screen name="OrderHistory" component={OrderHistory} options={{ headerShown: false }} />
             <Stack.Screen name="ReviewScreen" component={ReviewScreen} options={{ headerShown: false }} />
+            <Stack.Screen name="OrderStatus" component={OrderStatus} options={{ headerShown: false }} />
             <Stack.Screen name="Otp" component={OtpScreen} />
             <Stack.Screen name="OtpScreenLogin" component={OtpScreenLogin} />
             <Stack.Screen name="MainRegis" component={MainRegister} /> 

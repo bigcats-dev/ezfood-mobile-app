@@ -271,7 +271,7 @@ export default StyleSheet.create({
   envRow: { flexDirection: 'row', alignItems: 'center' },
   pickRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 12 },
   addressWarning: { marginTop: 12, color: '#666' },
-  footer: { padding: 12, borderTopLeftRadius: 16, borderTopRightRadius: 16 , marginLeft: 10 , marginRight: 10, padding: 15 , paddingBottom: 30 },
+  footer: { padding: 12, borderTopLeftRadius: 16, borderTopRightRadius: 16 , marginLeft: 10 , marginRight: 10, padding: 15 , paddingBottom: 15 },
   footerInner: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   orderBtn: { minWidth: 150 },
   addressRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 0 , color: '#1E874B' },
@@ -331,6 +331,7 @@ export default StyleSheet.create({
     color: '#1e88e5', // น้ำเงินเหมือนลิงก์
     fontSize: 14,
   },
+  qrImg: { width: 220, height: 220, borderRadius: 8 ,marginTop: -20},
 
 });
 
